@@ -1,20 +1,43 @@
 package com.example.littlelemoncapstone.ui.theme
 
-import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.material3.Typography
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.example.littlelemoncapstone.R
 
-// Set of Material typography styles to start with
+val karla = FontFamily(Font(R.font.karla_regular))
+val markazi = FontFamily(Font(R.font.markazi_text_regular))
+
 val Typography = Typography(
-    bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
+    bodySmall = TextStyle(
+        fontFamily = karla,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
+    ),
+
+    bodyMedium = TextStyle(
+        fontFamily = karla,
+        fontWeight = FontWeight.Normal,
+        fontSize = 20.sp
+    ),
+
+    bodyLarge = TextStyle(
+        fontFamily = karla,
+        fontWeight = FontWeight.Normal,
+        fontSize = 140.sp
+    ),
+
+    titleLarge = TextStyle(
+        fontFamily = markazi,
+        fontWeight = FontWeight.Bold,
+        fontSize = 120.sp
     )
+)
+
+
     /* Other default text styles to override
     titleLarge = TextStyle(
         fontFamily = FontFamily.Default,
@@ -31,4 +54,3 @@ val Typography = Typography(
         letterSpacing = 0.5.sp
     )
     */
-)
