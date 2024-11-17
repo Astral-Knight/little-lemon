@@ -15,7 +15,7 @@ val Typography = Typography(
     bodySmall = TextStyle(
         fontFamily = karla,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
+        fontSize = 12.sp,
     ),
 
     bodyMedium = TextStyle(
@@ -25,15 +25,27 @@ val Typography = Typography(
     ),
 
     bodyLarge = TextStyle(
-        fontFamily = karla,
+        fontFamily = karla ,
         fontWeight = FontWeight.Normal,
-        fontSize = 140.sp
+        fontSize = 25.sp
     ),
 
     titleLarge = TextStyle(
         fontFamily = markazi,
         fontWeight = FontWeight.Bold,
-        fontSize = 120.sp
+        fontSize = 40.sp
+    ),
+
+    titleMedium = TextStyle(
+        fontFamily = markazi,
+        fontWeight = FontWeight.Bold,
+        fontSize = 25.sp
+    ),
+
+    labelLarge = TextStyle(
+        fontFamily = karla,
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp
     )
 )
 
