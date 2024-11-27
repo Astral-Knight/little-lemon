@@ -29,37 +29,36 @@ import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 
 class MainActivity : ComponentActivity() {
-        private val httpClient = HttpClient (Android) {
-            install(ContentNegotiation) {
-                json(contentType = ContentType("text", "plain"))
-            }
+    private val httpClient = HttpClient(Android) {
+        install(ContentNegotiation) {
+            json(contentType = ContentType("text", "plain"))
         }
+    }
 
-        private val database by lazy {
-            Room.databaseBuilder(applicationContext, AppDatabase::class.java, "database").build()
-        }
+    private val database by lazy {
+        Room.databaseBuilder(applicationContext, AppDatabase::class.java, "database")
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        lifecycleScope.launch {
-            val isEmpty = withContext(Dispatchers.IO) {
-                (database.menuItemDao().isEmpty())
-            }
-            if (isEmpty) {
-                val menuItemNetwork = fetchMenu()
-                    saveMenuToDatabase(menuItemNetwork)
-                }
-            }
-
         setContent {
             LittleLemonCapstoneTheme {
-                val navController = rememberNavController()
-                NavigationComposable(navController = navController)
+                val navHostController = rememberNavController()
+                NavigationComposable(navController = navHostController, database)
+            }
+        }
+        lifecycleScope.launch(Dispatchers.IO) {
+            if (database.menuItemDao().isEmpty()) {
+                saveMenuToDatabase(fetchMenu())
             }
         }
 
-
     }
+
+
+
 
 
     private suspend fun fetchMenu(): List<MenuItemNetwork> {

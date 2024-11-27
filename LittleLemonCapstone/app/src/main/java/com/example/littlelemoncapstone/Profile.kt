@@ -34,11 +34,11 @@ import com.example.littlelemoncapstone.ui.theme.primaryYellow
 @Composable
 fun Profile(navController: NavHostController) {
     val context = LocalContext.current
-    val sharedPreferences = context.getSharedPreferences("Little Lemon", Context.MODE_PRIVATE)
+    val sharedPreferences = context.getSharedPreferences(USER_PROFILE, Context.MODE_PRIVATE)
 
-    val firstName = sharedPreferences.getString("firstName", "")
-    val lastName = sharedPreferences.getString("lastName", "")
-    val email = sharedPreferences.getString("email", "")
+    val firstName = sharedPreferences.getString(FIRST_NAME, "")
+    val lastName = sharedPreferences.getString(LAST_NAME, "")
+    val email = sharedPreferences.getString(EMAIL, "")
 
     Column(
         modifier = Modifier
