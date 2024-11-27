@@ -31,6 +31,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.littlelemoncapstone.ui.theme.LittleLemonCapstoneTheme
@@ -39,9 +40,9 @@ import com.example.littlelemoncapstone.ui.theme.primaryGreen
 import com.example.littlelemoncapstone.ui.theme.primaryYellow
 
 @Composable
-fun Onboarding(navHostController: NavHostController) {
+fun Onboarding(navController: NavController) {
     val context = LocalContext.current
-    val sharedPreferences = context.getSharedPreferences("Little Lemon", Context.MODE_PRIVATE)
+    val sharedPreferences = context.getSharedPreferences(USER_PROFILE, Context.MODE_PRIVATE)
 
     var firstName by remember {
         mutableStateOf("") }
@@ -132,7 +133,7 @@ fun Onboarding(navHostController: NavHostController) {
                      .apply()
                 Toast.makeText(context, "Registration successful! Welcome to Little Lemon!",
                     Toast.LENGTH_SHORT).show()
-                navHostController.navigate("home") {
+                navController.navigate("home") {
                     popUpTo("onboarding") { inclusive = true }
                     launchSingleTop = true
                         }
@@ -155,6 +156,6 @@ fun Onboarding(navHostController: NavHostController) {
 @Composable
 fun OnboardingPreview() {
     LittleLemonCapstoneTheme {
-        Onboarding(navHostController = rememberNavController())
+        Onboarding(navController = rememberNavController())
     }
 }

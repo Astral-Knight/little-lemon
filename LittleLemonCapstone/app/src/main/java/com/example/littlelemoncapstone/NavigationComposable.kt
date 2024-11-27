@@ -9,7 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.room.Room
 
 @Composable
-fun NavigationComposable(navController: NavHostController) {
+fun NavigationComposable(navController: NavHostController, database: AppDatabase) {
     val context = LocalContext.current
     val sharedPreferences = context.getSharedPreferences("Little Lemon", Context.MODE_PRIVATE)
     val startDestination = if (sharedPreferences.getBoolean("userRegistered", false)) Home.route else Onboarding.route
@@ -20,7 +20,7 @@ fun NavigationComposable(navController: NavHostController) {
             Onboarding(navController)
         }
         composable(Home.route){
-            Home(navController)
+            Home(navController, database)
         }
         composable(Profile.route){
             Profile(navController)
